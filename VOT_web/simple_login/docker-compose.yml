@@ -5,11 +5,16 @@ services:
     build: .
     ports:
       - "5000:5000"
-    env_file:
-      - env_file.env
+    environment:
+      - DB_HOST=db
+      - DB_USER=user
+      - DB_PASSWORD=user_password
+      - DB_NAME=login_db
+      - DB_PORT=3306
     depends_on:
       - db
-
+    volumes:
+      - ./app:/app  # Only mount the `app` folder to `/app` in the container
   db:
     image: mysql:8.0
     environment:
