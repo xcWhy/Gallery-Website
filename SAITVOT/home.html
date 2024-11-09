@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Image Upload</title>
+    <link rel="stylesheet" href="styleVOT.css">
+</head>
+<body>
+    <header>
+        <h1>Upload Your Images</h1>
+        <p>Select multiple images to preview them before uploading</p>
+    </header>
+
+    <section id="upload-section">
+        <div class="upload-card">
+            <form id="upload-form">
+                <label for="file-upload" class="upload-label">Choose Images</label>
+                <input type="file" id="file-upload" accept="image/*" multiple hidden>
+                <div id="preview-container">
+                    <p>Preview:</p>
+                    <!-- Thumbnails will be added here dynamically -->
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script src="funcVOT.js"></script>
+</body>
+</html>
