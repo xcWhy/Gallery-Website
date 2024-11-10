@@ -20,14 +20,12 @@
 ### 1. Клонирайте хранилището
 Изтеглете хранилището на локалната си машина.
 
-Копирайте кода
-`git clone https://github.com/yourusername/your-repository.git`
+`git clone https://github.com/yourusername/your-repository.git` /
 `cd your-repository`
 
 ### 2. Изграждане на контейнери Docker
 Можете да изградите и стартирате контейнерите с помощта на Docker Compose.
 
-Копирайте кода
 `docker-compose up --build`
 
 Тази команда ще:
@@ -45,7 +43,6 @@
 ### 4. Спиране на приложението
 За да спрете контейнерите, стартирайте:
 
-Копирайте кода
 `docker-compose down`
 
 Това ще спре и премахне контейнерите от локалната ви машина.
