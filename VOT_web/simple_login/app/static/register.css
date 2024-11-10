@@ -1,0 +1,75 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body Styling */
+body {
+    background-color: #040b0e;
+    color: #c5c6c7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #66fcf1;
+}
+
+header p {
+    font-size: 1.2em;
+    color: #c5c6c7;
+}
+
+/* Register Form Styling */
+#register-section {
+    background-color: #000000;
+    padding: 20px 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}
+
+#register-section input[type="text"],
+#register-section input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #66fcf1;
+    border-radius: 5px;
+    background-color: #1f2833;
+    color: #c5c6c7;
+}
+
+#register-section button {
+    padding: 10px 20px;
+    background-color: #66fcf1;
+    color: #0b0c10;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#register-section button:hover {
+    background-color: #45a29e;
+}
+
+#register-section p a {
+    color: #66fcf1;
+    text-decoration: none;
+}

@@ -1,0 +1,92 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body Styling */
+body {
+    background-color: #040b0e;
+    color: #c5c6c7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #66fcf1;
+}
+
+header p {
+    font-size: 1.2em;
+    color: #c5c6c7;
+}
+
+/* Gallery Section */
+#upload-section {
+    background-color: #000000;
+    padding: 20px 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    max-width: 700px;
+    width: 90%;
+    text-align: center;
+}
+
+#upload-section button {
+    padding: 10px 20px;
+    background-color: #66fcf1;
+    color: #0b0c10;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#upload-section button:hover {
+    background-color: #45a29e;
+}
+
+#preview-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.preview-image {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 12px;
+    border: 2px solid #66fcf1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    object-fit: contain;
+}
+
+/* Logout Button Styling */
+#logout-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #66fcf1;
+    color: #0b0c10;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#logout-button:hover {
+    background-color: #45a29e;
+}

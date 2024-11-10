@@ -2,9 +2,16 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 import mysql.connector
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
+
+
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Make sure to use a secure, unique key
+UPLOAD_FOLDER = 'static/uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 def get_db_connection():
     return mysql.connector.connect(
@@ -52,10 +59,12 @@ def login():
         cursor = conn.cursor()
 
         try:
-            cursor.execute("SELECT password_hash FROM users WHERE email = %s", (email,))
+            cursor.execute("SELECT id, password_hash FROM users WHERE email = %s", (email,))
             user = cursor.fetchone()
 
-            if user and check_password_hash(user[0], password):
+            if user and check_password_hash(user[1], password):
+                # Set session variable to indicate the user is logged in
+                session['user_id'] = user[0]
                 flash("Login successful!", "success")
                 return redirect(url_for('main'))
             else:
@@ -72,15 +81,51 @@ def login():
 
 @app.route('/main')
 def main():
-    if 'user_id' in session:
-        return render_template('main.html', email=session['email'])
-    else:
-        flash("Please log in to access this page", "warning")
+    if 'user_id' not in session:
+        flash("Please log in to access the gallery", "warning")
         return redirect(url_for('login'))
+
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT filename FROM images ORDER BY uploaded_at DESC")
+    images = cursor.fetchall()
+    cursor.close()
+    conn.close()
+
+    return render_template('main.html', images=images)
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    if 'user_id' not in session:
+        flash("Please log in to upload images", "warning")
+        return redirect(url_for('login'))
+
+    if 'file' not in request.files or request.files['file'].filename == '':
+        flash("No file selected", "warning")
+        return redirect(url_for('main'))
+
+    file = request.files['file']
+    filename = secure_filename(file.filename)
+    filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    file.save(filepath)
+
+    # Save image data to the database
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "INSERT INTO images (user_id, filename) VALUES (%s, %s)",
+        (session['user_id'], filename)
+    )
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    flash("Image uploaded successfully!", "success")
+    return redirect(url_for('main'))
 
 @app.route('/logout')
 def logout():
-    session.clear()
+    session.pop('user_id', None)
     flash("You have been logged out.", "info")
     return redirect(url_for('login'))
 

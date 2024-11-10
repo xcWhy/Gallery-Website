@@ -1,11 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Main Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
-    <h2>Welcome, {{ email }}!</h2>
-    <p>This is the main page.</p>
-    <a href="{{ url_for('logout') }}">Logout</a>
+    <header>
+        <h1>Welcome to the Gallery</h1>
+        <p>Explore and upload your favorite images!</p>
+        <form action="{{ url_for('logout') }}" method="post" style="display:inline;">
+            <button class="upload-label" style="margin-top: 10px;">Logout</button>
+        </form>
+    </header>
+    <section id="upload-section">
+        <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+            <div class="upload-card">
+                <label class="upload-label" for="file-upload">Choose File to Upload</label>
+                <input type="file" id="file-upload" name="file" required>
+                <button type="submit" class="upload-label">Upload</button>
+            </div>
+        </form>
+    </section>
+    <div id="preview-container">
+        {% if images %}
+            {% for image in images %}
+                <div class="image-card">
+                    <img src="{{ url_for('static', filename='uploads/' ~ image.filename) }}" class="preview-image">
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No images uploaded yet. Be the first to upload!</p>
+        {% endif %}
+    </div>
 </body>
 </html>
