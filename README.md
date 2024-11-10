@@ -16,7 +16,7 @@
 Изтеглете хранилището на локалната си машина.
 
 `git clone https://github.com/xcWhy/Gallery-Website.git` /
-`cd your-repository`
+`cd VOT_web/simple_login`
 
 #### 2. *Изграждане на контейнери Docker*
 Можете да изградите и стартирате контейнерите с помощта на Docker Compose.
