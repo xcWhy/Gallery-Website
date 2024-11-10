@@ -15,7 +15,7 @@
 #### 1. *Клонирайте хранилището*
 Изтеглете хранилището на локалната си машина.
 
-`git clone https://github.com/yourusername/your-repository.git` /
+`git clone https://github.com/xcWhy/Gallery-Website.git` /
 `cd your-repository`
 
 #### 2. *Изграждане на контейнери Docker*
