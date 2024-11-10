@@ -10,9 +10,6 @@
     <header>
         <h1>Welcome to the Gallery</h1>
         <p>Explore and upload your favorite images!</p>
-        <form action="{{ url_for('logout') }}" method="post" style="display:inline;">
-            <button class="upload-label" style="margin-top: 10px;">Logout</button>
-        </form>
     </header>
     <section id="upload-section">
         <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
