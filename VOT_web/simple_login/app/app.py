@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename
 
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Make sure to use a secure, unique key
+app.secret_key = 'your_secret_key'  
 UPLOAD_FOLDER = 'static/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -38,9 +38,8 @@ def register():
             flash("Registration successful! Please log in.", "success")
             return redirect(url_for('login'))
         except mysql.connector.Error as err:
-            # Output the specific MySQL error to help identify the issue
             flash(f"Database error: {err}", "danger")
-            print("Database error:", err)  # Log this in the Docker output
+            print("Database error:", err)
         finally:
             cursor.close()
             conn.close()
@@ -63,7 +62,6 @@ def login():
             user = cursor.fetchone()
 
             if user and check_password_hash(user[1], password):
-                # Set session variable to indicate the user is logged in
                 session['user_id'] = user[0]
                 flash("Login successful!", "success")
                 return redirect(url_for('main'))
